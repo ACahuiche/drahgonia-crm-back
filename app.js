@@ -14,11 +14,13 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 //Import Routes files
-// EJEMP const shortlinksRoutes = require ('./routes/shortlinksRoutes');
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 
 //Endpoints
-//EJEMP app.use ('/', shortlinksRoutes);
+app.use('/auth', authRoutes);
+//app.use('/users', userRoutes);
 
 app.listen(port, () => {
   console.log(`Drahgonia CRM server running in port ${port}`);
