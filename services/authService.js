@@ -1,3 +1,5 @@
+const authDAO = require("../DAO/authDAO");
+
 class AuthService {
   async validateUserData(userData) {
     if (userData.userEmailData.trim() == "" || userData.userEmailData == "undefined" ||
@@ -5,7 +7,7 @@ class AuthService {
       throw new Error("Some data is empty, validate the username os password");
     }
     else {
-      //return await authDAO.loginAuth(userEmailData, passwordData);
+      return await authDAO.loginAuth(userData);
     }
   }
 }
