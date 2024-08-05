@@ -20,7 +20,7 @@ const userRoutes = require('./routes/userRoutes');
 
 //Endpoints
 app.use('/auth', authRoutes);
-//app.use('/users', userRoutes);
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
   console.log(`Drahgonia CRM server running in port ${port}`);

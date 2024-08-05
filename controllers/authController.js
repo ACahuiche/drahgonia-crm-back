@@ -2,7 +2,7 @@ const authService = require('../services/authService');
 
 class AuthController {
   async authtenticateUser(req, res) {
-    let data = req.body.dataUser;
+    let data = req.body;
 
     try {
       let token = await authService.validateUserData(data);
