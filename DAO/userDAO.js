@@ -7,7 +7,7 @@ class UserDAO {
       const users = await userModel.find();
 
       if (!users || users.length === 0) {
-        throw new Error("No users found");
+        throw new Error("No hay usuarios registrados");
       } else {
         return users;
       }
@@ -19,13 +19,13 @@ class UserDAO {
   async getById(userId) {
     try {
       if (typeof userId !== 'string') {
-        throw new Error("Invalid ID type. ID must be a string.");
+        throw new Error("ID invalido. ID debe ser un string.");
       }
 
       const user = await userModel.findById(userId);
 
       if (!user) {
-        throw new Error("User not found");
+        throw new Error("Usuario no encontrado");
       } else {
         return user;
       }
@@ -36,6 +36,13 @@ class UserDAO {
 
   async save(newUserData) {
     try {
+
+      const verificarCorreo = await userModel.findOne({userEmail: newUserData.userEmail});
+
+      if(verificarCorreo){
+        throw new Error("El correo ya ha sido registrado");
+      }
+
       const doc = await userModel.create({
         userName: newUserData.userName,
         userEmail: newUserData.userEmail,
@@ -44,7 +51,7 @@ class UserDAO {
       });
 
       if (!doc) {
-        throw new Error("Could not save user");
+        throw new Error("El usuario no ha podido guardarse");
       }
       else {
         return doc;
@@ -69,7 +76,7 @@ class UserDAO {
       );
 
       if (!updatedUser) {
-        throw new Error("Could not update user");
+        throw new Error("No ha sido posible actualizar la informacion de usuario");
       } else {
         return updatedUser;
       }
@@ -83,7 +90,7 @@ class UserDAO {
       const deletedUser = await userModel.findByIdAndDelete(userId);
 
       if (!deletedUser) {
-        throw new Error("Could not delete user");
+        throw new Error("No fue posible eliminar al usuario");
       } else {
         return deletedUser;
       }
