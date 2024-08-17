@@ -36,7 +36,7 @@ class UserController {
   }
 
   async deleteUser(req, res) {
-    let idUserData = req.body.userId;
+    let idUserData = req.params.id;
     try{
       let userDataDeleted = await userService.dataValidateToDelete(idUserData);
       res.status(200).json({
@@ -53,7 +53,7 @@ class UserController {
   }
 
   async getUserById(req, res) {
-    let idUserData = req.body.userId;
+    let idUserData = req.params.id;
     try{
       let userData = await userService.dataValidateToGetUserById(idUserData);
       res.status(200).json({
