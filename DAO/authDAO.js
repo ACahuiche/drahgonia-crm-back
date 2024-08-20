@@ -22,6 +22,7 @@ class AuthDAO {
 
       let user = {
         'idUsername': doc._id,
+        'userName': doc.userName,
         'isAdmin': doc.isAdmin,
         'backkey': securityConfig.jwtconfig.backkey
       }
