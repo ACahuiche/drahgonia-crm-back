@@ -32,7 +32,7 @@ class UserService {
       throw new Error("The user password is Empty");
     }
 
-    if (!userData.isAdmin || userData.isAdmin.trim() == '' || userData.isAdmin == 'undefined') {
+    if (!userData.hasOwnProperty('isAdmin')) {
       userData.isAdmin = false;
     }
 
