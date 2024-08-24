@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var generalConfig = require("../environments/generalConfig");
 
-mongoose.connect(`${generalConfig.mongoConnection}`, {
+mongoose.connect(`${generalConfig.mongoLocalConnection}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then((db)=>console.log('Database connection success'))

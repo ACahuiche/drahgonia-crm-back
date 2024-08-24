@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const generalConfig = require('../environments/generalConfig')
 
 class UserDAO {
 
@@ -87,6 +88,11 @@ class UserDAO {
 
   async delete(userId) {
     try {
+
+      const userInfo = await userModel.findOne({_id: userId});
+      if(userInfo.userEmail === generalConfig.userAdminEmailLogin) {
+        throw new Error('No es posible eliminar al usuario principal de la aplicacion');
+      }
       const deletedUser = await userModel.findByIdAndDelete(userId);
 
       if (!deletedUser) {
